@@ -49,6 +49,8 @@ export default class Autocomplete {
 
       // Pass the value to the onSelect callback
       el.addEventListener("click", event => {
+        this.inputEl.value = result.text;
+        this.listEl.remove();
         const { onSelect } = this.options;
         if (typeof onSelect === "function") onSelect(result.value);
       });

@@ -50,7 +50,7 @@ export default class Autocomplete {
       // Pass the value to the onSelect callback
       el.addEventListener("click", event => {
         this.inputEl.value = result.text;
-        this.listEl.remove();
+        this.listEl.innerHTML = "";
         const { onSelect } = this.options;
         if (typeof onSelect === "function") onSelect(result.value);
       });
@@ -75,10 +75,51 @@ export default class Autocomplete {
     inputEl.addEventListener("keydown", event => {
       switch (event.key) {
         case "Enter":
+          for (let i = 0; i < this.listEl.children.length; i++) {
+            this.listEl.children[i].style.backgroundColor = "#eee";
+            console.log(this.listEl.children[i].innerHTML);
+          }
           break;
         case "ArrowUp":
+            this.selectedIndex--;
+          if (
+            this.selectedIndex < 0 ||
+            this.selectedIndex > this.listEl.children.length
+          ) {
+            this.selectedIndex = this.listEl.children.length-1;
+          }
+          
+          this.listEl.children[this.selectedIndex].style.backgroundColor =
+            "#eee";
+
+          if (this.selectedIndex != this.listEl.children.length-1)
+            this.listEl.children[this.selectedIndex + 1].style.backgroundColor =
+              "#fff";
+              else 
+              this.listEl.children[0].style.backgroundColor =
+            "#fff";
+          
           break;
         case "ArrowDown":
+            this.selectedIndex++;
+            if (
+              this.selectedIndex < 0 ||
+              this.selectedIndex > this.listEl.children.length-1
+            ) {
+              this.selectedIndex = 0;
+            }
+            
+            this.listEl.children[this.selectedIndex].style.backgroundColor =
+              "#eee";
+  
+            if (this.selectedIndex != 0)
+              this.listEl.children[this.selectedIndex - 1].style.backgroundColor =
+                "#fff";
+            else 
+              this.listEl.children[this.listEl.children.length-1].style.backgroundColor =
+            "#fff";
+          
+            
           break;
       }
     });
@@ -95,5 +136,6 @@ export default class Autocomplete {
     this.listEl = document.createElement("ul");
     Object.assign(this.listEl, { className: "results" });
     this.rootEl.appendChild(this.listEl);
+    this.selectedIndex = -1;
   }
 }

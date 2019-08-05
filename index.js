@@ -4,10 +4,12 @@ import "./main.css";
 
 // US States
 const data = (query) => {
-  return usStates.map(state => ({
-  text: state.name,
-  value: state.abbreviation
-}));
+  return new Promise((resolve, reject) => {
+    resolve(usStates.map(state => ({
+      text: state.name,
+      value: state.abbreviation
+    })));
+  }); 
 }
 
 new Autocomplete(document.getElementById('state'), {

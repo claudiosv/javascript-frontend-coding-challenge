@@ -75,51 +75,51 @@ export default class Autocomplete {
     inputEl.addEventListener("keydown", event => {
       switch (event.key) {
         case "Enter":
-            this.inputEl.value = this.listEl.children[this.selectedIndex].innerText;
-            this.listEl.innerHTML = "";
+          this.inputEl.value = this.listEl.children[
+            this.selectedIndex
+          ].innerText;
+          this.listEl.innerHTML = "";
           break;
         case "ArrowUp":
-            this.selectedIndex--;
+          this.selectedIndex--;
           if (
             this.selectedIndex < 0 ||
             this.selectedIndex > this.listEl.children.length
           ) {
-            this.selectedIndex = this.listEl.children.length-1;
+            this.selectedIndex = this.listEl.children.length - 1;
           }
-          
           this.listEl.children[this.selectedIndex].style.backgroundColor =
             "#eee";
 
-          if (this.selectedIndex != this.listEl.children.length-1)
+          if (this.selectedIndex != this.listEl.children.length - 1)
             this.listEl.children[this.selectedIndex + 1].style.backgroundColor =
               "#fff";
-              else 
-              this.listEl.children[0].style.backgroundColor =
-            "#fff";
-          
+          else this.listEl.children[0].style.backgroundColor = "#fff";
+
           break;
         case "ArrowDown":
-            this.selectedIndex++;
-            if (
-              this.selectedIndex < 0 ||
-              this.selectedIndex > this.listEl.children.length-1
-            ) {
-              this.selectedIndex = 0;
-            }
-            
-            this.listEl.children[this.selectedIndex].style.backgroundColor =
-              "#eee";
-  
-            if (this.selectedIndex != 0)
-              this.listEl.children[this.selectedIndex - 1].style.backgroundColor =
-                "#fff";
-            else 
-              this.listEl.children[this.listEl.children.length-1].style.backgroundColor =
-            "#fff";
-          
-            
+          this.selectedIndex++;
+          if (
+            this.selectedIndex < 0 ||
+            this.selectedIndex > this.listEl.children.length - 1
+          ) {
+            this.selectedIndex = 0;
+          }
+
+          this.listEl.children[this.selectedIndex].style.backgroundColor =
+            "#eee";
+
+          if (this.selectedIndex != 0)
+            this.listEl.children[this.selectedIndex - 1].style.backgroundColor =
+              "#fff";
+          else
+            this.listEl.children[
+              this.listEl.children.length - 1
+            ].style.backgroundColor = "#fff";
+
           break;
       }
+      return false;
     });
 
     return inputEl;

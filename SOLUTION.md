@@ -1,3 +1,4 @@
 # Solution Docs
 
 <!-- You can include documentation, additional setup instructions, notes etc. here -->
+The tasks were completed. No tests were written unfortunately. In further refactoring, I would structure the component better by, for example, creating a new GitHubAutoComplete class that extends the base class (as supported in ES2015) rather than passing the data promise from index.js as this is not very clean. Also, I would create a reusable method for the inputEl keydown event listener, since there is a lot of code repititon violating DRY principles. I would also fix the bug that if an element is hovered over by mouse, and then passed by using the arrow keys, the hover style is no longer applied. 

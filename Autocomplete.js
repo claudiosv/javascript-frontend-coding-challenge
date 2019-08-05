@@ -10,7 +10,7 @@ export default class Autocomplete {
   }
 
   onQueryChange(query) {
-    // Get data for the dropdown
+    // Resolve promise, get data for the dropdown
     this.options.data(query, this.options.numOfResults).then(data => {
       let results = this.getResults(query, data);
       results = results.slice(0, this.options.numOfResults);
@@ -69,6 +69,17 @@ export default class Autocomplete {
     inputEl.addEventListener("input", event =>
       this.onQueryChange(event.target.value)
     );
+
+    inputEl.addEventListener("keydown", event => {
+      switch (event.key) {
+        case "Enter":
+          break;
+        case "ArrowUp":
+          break;
+        case "ArrowDown":
+          break;
+      }
+    });
 
     return inputEl;
   }
